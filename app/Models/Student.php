@@ -12,12 +12,7 @@ class Student extends Model
 
     protected $table = "students";
 
-    protected $fillable = [
-        "name",
-        "email",
-        "password",
-        "phone_no",
-    ];
+   
     
     public $timestamps = true;
 }

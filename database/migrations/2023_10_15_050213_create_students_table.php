@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string("name",120);
             $table->string("email",120);
             $table->string("password",120);
-            $table->string("phone_no",25);
+            $table->string("phone_no",25)->nullable();
             $table->timestamps();
         });
     }
