@@ -39,7 +39,21 @@ class StudentController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            "email" => "required",
+            "password" => "required",
+        ]);
 
+        $student = Student::where('email', $request->email)->first();
+
+        if(isset($student->id) && Hash::check($request->password,$student->password)){
+
+            $token = $student->createToken("auth_token")->plainTextToken;
+
+            return response()->json(['status'=>200,'message' => 'Login Successful', 'token' => $token], 200);
+        }else{
+            return response()->json(['status'=>404,'message' => 'Invalid Credentials'], 404);
+        }
     }
 
     public function logout()
